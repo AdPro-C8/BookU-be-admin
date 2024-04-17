@@ -1,7 +1,17 @@
-package id.ac.ui.cs.advprog.bookubeadmin.services;
+package id.ac.ui.cs.advprog.admin.services;
 
-import id.ac.ui.cs.advprog.bookubeauth.models.User;
-import java.util.List;
+import id.ac.ui.cs.advprog.admin.models.User;
 
-public interface AdminService {
-    List<User> findAllUsers();}
+public class UserFactory {
+    public User createUser(String userType) {
+        if (userType == null) {
+            return null;
+        }
+        if (userType.equalsIgnoreCase("ADMIN")) {
+            return new User();
+        } else if (userType.equalsIgnoreCase("CUSTOMER")) {
+            return new User();
+        }
+        return null;
+    }
+}
