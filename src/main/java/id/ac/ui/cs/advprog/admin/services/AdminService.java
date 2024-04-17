@@ -2,7 +2,7 @@ package id.ac.ui.cs.advprog.admin.services;
 
 import id.ac.ui.cs.advprog.admin.models.User;
 
-public class UserFactory {
+public class AdminService {
     public User createUser(String userType) {
         if (userType == null) {
             return null;
