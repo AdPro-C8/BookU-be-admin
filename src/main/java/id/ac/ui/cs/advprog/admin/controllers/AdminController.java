@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.bookubeauth.controllers;
+package id.ac.ui.cs.advprog.bookubeadmin.controllers;
 
 import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import id.ac.ui.cs.advprog.bookubeauth.services.CustomerService;

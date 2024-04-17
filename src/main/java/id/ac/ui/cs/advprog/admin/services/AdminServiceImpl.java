@@ -1,7 +1,7 @@
-package id.ac.ui.cs.advprog.bookubeauth.services;
+package id.ac.ui.cs.advprog.bookubeadmin.services;
 
-import id.ac.ui.cs.advprog.bookubeauth.models.User;
-import id.ac.ui.cs.advprog.bookubeauth.repositories.AdminRepository;
+import id.ac.ui.cs.advprog.bookubeadmin.models.User;
+import id.ac.ui.cs.advprog.bookubeadmin.repositories.AdminRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class AdminServiceImpl implements AdminService {
     private final AdminRepository adminRepository;
 
-    public AdaminServiceImpl(AdminRepository adminRepository) {
+    public AdminServiceImpl(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
 

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.advprog.bookubeauth.repositories;
+package id.ac.ui.cs.advprog.bookubeadmin.repositories;
 
 import id.ac.ui.cs.advprog.bookubeauth.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
