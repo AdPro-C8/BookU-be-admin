@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Entity
 @Table(name = "users")
 public class User {
     @Id
@@ -33,4 +32,8 @@ public class User {
     @Getter
     @Setter
     private String role;
+
+    public static UserBuilder builder() {
+        return new UserBuilder();
+    }
 }

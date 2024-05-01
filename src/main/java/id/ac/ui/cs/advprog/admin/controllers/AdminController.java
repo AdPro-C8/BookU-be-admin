@@ -14,10 +14,10 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-    @GetMapping("/product/list")
+    @GetMapping("/dashboardadmin")
     public String productListPage(Model model){
         List<User> allUsers = adminService.findAll();
-        model.addAttribute("products", allUsers);
-        return "userlist";
+        model.addAttribute("users", allUsers);
+        return "dashboardadmin";
     }
 }
