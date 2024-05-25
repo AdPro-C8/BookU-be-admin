@@ -1,19 +1,21 @@
 package id.ac.ui.cs.advprog.admin.services;
 
 import id.ac.ui.cs.advprog.admin.models.User;
-import id.ac.ui.cs.advprog.admin.repositories.AdminRepository;
+import id.ac.ui.cs.advprog.admin.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class AdminService {
 
-
+    @Autowired
     private AdminRepository adminRepository;
+
     public User createUser(String userType) {
         if (userType == null) {
             return null;
@@ -26,10 +28,9 @@ public class AdminService {
         return null;
     }
 
-    public List<User> findAll(){
-        Iterator<User> userIterator = adminRepository.findAll();
-        List<User> allProduct = new ArrayList<>();
-        userIterator.forEachRemaining(allProduct::add);
-        return allProduct;
+    @Async
+    public CompletableFuture<List<User>> findAllUser() {
+        List<User> allUsers = adminRepository.findAll();
+        return CompletableFuture.completedFuture(allUsers);
     }
 }
