@@ -25,6 +25,7 @@ public class BookService {
 
     private final RestClient restClient;
     private String book_url = "/book";
+    private String book_url2 = "/book/";
 
     @Autowired
     public BookService(RestClient restClient) {
@@ -48,7 +49,7 @@ public class BookService {
     public Book update(Book book) {
         try {
             Book existingBook = restClient.get()
-                    .uri(bookHost + "/book/" + book.getId())
+                    .uri(bookHost + book_url2 + book.getId())
                     .retrieve()
                     .body(Book.class);
 
@@ -57,7 +58,7 @@ public class BookService {
             }
             book.setId(existingBook.getId());
             restClient.delete()
-                    .uri(bookHost + "/book/" + book.getId())
+                    .uri(bookHost + book_url2 + book.getId())
                     .retrieve();
             return save(book);
 
@@ -69,7 +70,7 @@ public class BookService {
     public Optional<Book> findById(UUID bookId) {
         try {
             Book book = restClient.get()
-                    .uri(bookHost + "/book/" + bookId)
+                    .uri(bookHost + book_url2 + bookId)
                     .retrieve()
                     .body(Book.class);
             return Optional.ofNullable(book);
@@ -81,7 +82,7 @@ public class BookService {
     public void deleteById(UUID bookId) {
         try {
             restClient.delete()
-                    .uri(bookHost + "/book/" + bookId)
+                    .uri(bookHost + book_url2 + bookId)
                     .retrieve();
         } catch (HttpStatusCodeException e) {
             throw new BookServiceException("Error deleting book: " + e.getMessage(), e);
