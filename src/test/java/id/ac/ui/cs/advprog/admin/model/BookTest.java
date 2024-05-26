@@ -37,7 +37,7 @@ public class BookTest {
         assertEquals("Test Publisher", book.getPublisher());
         assertEquals(100, book.getPrice());
         assertEquals(Date.valueOf(LocalDate.now()), book.getPublishDate());
-        assertEquals("123-4567890123", book.getIsbn());
+        assertEquals("1234567890123", book.getIsbn());
         assertEquals(200, book.getPageCount());
         assertEquals("http://example.com/photo.jpg", book.getPhotoUrl());
         assertEquals("Test Category", book.getCategory());
@@ -53,7 +53,7 @@ public class BookTest {
                 .publisher("Builder Publisher")
                 .price(150)
                 .publishDate(Date.valueOf(LocalDate.now().minusDays(1)))
-                .isbn("987-6543210987")
+                .isbn("9876543210987")
                 .pageCount(300)
                 .photoUrl("http://example.com/builder-photo.jpg")
                 .category("Builder Category")
@@ -65,7 +65,7 @@ public class BookTest {
         assertEquals("Builder Publisher", bookFromBuilder.getPublisher());
         assertEquals(150, bookFromBuilder.getPrice());
         assertEquals(Date.valueOf(LocalDate.now().minusDays(1)), bookFromBuilder.getPublishDate());
-        assertEquals("987-6543210987", bookFromBuilder.getIsbn());
+        assertEquals("9876543210987", bookFromBuilder.getIsbn());
         assertEquals(300, bookFromBuilder.getPageCount());
         assertEquals("http://example.com/builder-photo.jpg", bookFromBuilder.getPhotoUrl());
         assertEquals("Builder Category", bookFromBuilder.getCategory());

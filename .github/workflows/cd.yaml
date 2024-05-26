@@ -2,7 +2,11 @@ name: Continous Deployment (CD)
 
 on:
   push:
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -23,12 +27,15 @@ jobs:
       - name: Configure Docker
         run: |
           gcloud auth configure-docker
+
       - name: Build
         run: |
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/booku-be-admin:latest .
+
       - name: Push
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/booku-be-admin:latest
+
       - name: Deploy
         run: |
           gcloud run deploy booku-be-admin \
@@ -39,4 +46,8 @@ jobs:
           --project ${{ secrets.GCP_PROJECT_ID }} \
           --set-env-vars=PG_HOST=${{ secrets.PG_HOST }} \
           --set-env-vars=PG_USER=${{ secrets.PG_USER }} \
-          --set-env-vars=PG_PASS=${{ secrets.PG_PASS }}
+          --set-env-vars=PG_PASS=${{ secrets.PG_PASS }} \
+          --set-env-vars=JWT_SECRET=${{ secrets.JWT_SECRET }} \
+          --set-env-vars=AUTH_HOST=${{ secrets.AUTH_HOST }} \
+          --set-env-vars=BOOKLIST_HOST=${{ secrets.BOOKLIST_HOST }} \
+          --set-env-vars=HISTORY_HOST=${{ secrets.HISTORY_HOST }}
