@@ -1,28 +1,26 @@
 package id.ac.ui.cs.advprog.admin.models;
 
-import id.ac.ui.cs.advprog.admin.models.Book;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.Date;
+import java.sql.Date;
+import java.util.UUID;
 
 public class BookBuilder {
-    private String id;
+    private UUID id;
     private String title;
     private String author;
     private String publisher;
     private int price;
-    private Date tanggalTerbit;
-    private String ISBN;
-    private int jumlahHalaman;
-    private String fotoCover;
-    private int jumlahBeli;
+    private Date publishDate;
+    private String isbn;
+    private int pageCount;
+    private String photoUrl;
+    private String category;
+    private int downloadCount;
 
-    public BookBuilder id (String id) {
-        if (id == null ||id.isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be empty");
+    public BookBuilder id(UUID id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID cannot be null");
         }
-        this.id =id;
+        this.id = id;
         return this;
     }
 
@@ -44,64 +42,82 @@ public class BookBuilder {
 
     public BookBuilder publisher(String publisher) {
         if (publisher == null || publisher.isEmpty()) {
-            throw new IllegalArgumentException("publisher cannot be empty");
+            throw new IllegalArgumentException("Publisher cannot be empty");
         }
         this.publisher = publisher;
         return this;
     }
 
     public BookBuilder price(int price) {
-        if (price == 0) {
-            throw new IllegalArgumentException("Price cannot be zero");
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
         }
         this.price = price;
         return this;
     }
 
-    public BookBuilder tanggalTerbit(Date tanggalTerbit) {
-        if (tanggalTerbit == null) {
-            throw new IllegalArgumentException("Tanggal terbit cannot be empty");
+    public BookBuilder publishDate(Date publishDate) {
+        if (publishDate == null) {
+            throw new IllegalArgumentException("Publish date cannot be null");
         }
-        this.tanggalTerbit = tanggalTerbit;
+        this.publishDate = publishDate;
         return this;
     }
-    public BookBuilder ISBN(String ISBN) {
-        if (ISBN == null || ISBN.isEmpty()) {
+
+    public BookBuilder isbn(String isbn) {
+        if (isbn == null || isbn.isEmpty()) {
             throw new IllegalArgumentException("ISBN cannot be empty");
         }
-        this.ISBN = ISBN;
+        this.isbn = isbn;
         return this;
     }
-    public BookBuilder jumlahHalaman(int jumlahHalaman) {
-        if (jumlahHalaman == 0) {
-            throw new IllegalArgumentException("jumlahHalaman cannot be empty");
+
+    public BookBuilder pageCount(int pageCount) {
+        if (pageCount < 0) {
+            throw new IllegalArgumentException("Page count cannot be negative");
         }
-        this.jumlahHalaman = jumlahHalaman;
+        this.pageCount = pageCount;
         return this;
     }
-    public BookBuilder fotoCover (String fotoCover ) {
-        if (fotoCover  == null || fotoCover .isEmpty()) {
-            throw new IllegalArgumentException("fotoCover  cannot be empty");
+
+    public BookBuilder photoUrl(String photoUrl) {
+        if (photoUrl == null || photoUrl.isEmpty()) {
+            throw new IllegalArgumentException("Photo URL cannot be empty");
         }
-        this.fotoCover  = fotoCover ;
+        this.photoUrl = photoUrl;
         return this;
     }
-    public BookBuilder jumlahBeli (int jumlahBeli){
-        this.jumlahBeli = jumlahBeli;
+
+    public BookBuilder category(String category) {
+        if (category == null || category.isEmpty()) {
+            throw new IllegalArgumentException("Category cannot be empty");
+        }
+        this.category = category;
+        return this;
+    }
+
+    public BookBuilder downloadCount(int downloadCount) {
+        if (downloadCount < 0) {
+            throw new IllegalArgumentException("Download count cannot be negative");
+        }
+        this.downloadCount = downloadCount;
         return this;
     }
 
     public Book build() {
         Book book = new Book();
+        book.setId(id);
         book.setTitle(title);
         book.setAuthor(author);
         book.setPublisher(publisher);
         book.setPrice(price);
-        book.setTanggalTerbit(tanggalTerbit);
-        book.setISBN(ISBN);
-        book.setJumlahHalaman(jumlahHalaman);
-        book.setFotoCover(fotoCover);
-        book.setJumlahBeli(0);
+        book.setPublishDate(publishDate);
+        book.setIsbn(isbn);
+        book.setPageCount(pageCount);
+        book.setPhotoUrl(photoUrl);
+        book.setCategory(category);
+        book.setDownloadCount(downloadCount);
+
 
         return book;
     }

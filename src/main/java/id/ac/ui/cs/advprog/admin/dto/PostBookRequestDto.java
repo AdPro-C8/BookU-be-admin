@@ -10,9 +10,9 @@ public class PostBookRequestDto {
     private String author;
     private String publisher;
     private int price;
-    private Date tanggalTerbit;
+    private Date publishDate;
     private String isbn;
-    private int jumlahHalaman;
-    private String fotoCover;
-    private int jumlahBeli;
+    private int pageCount;
+    private String photoUrl;
+    private String category;
 }

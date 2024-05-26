@@ -1,71 +1,58 @@
 package id.ac.ui.cs.advprog.admin.models;
 
-import id.ac.ui.cs.advprog.admin.models.BookBuilder;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.UUID;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "book", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"title", "author"})
 })
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    @Getter
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
     private String title;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
     private String author;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
     private String publisher;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
+    @Check(constraints = "price >= 0")
     private int price;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
-    private Date tanggalTerbit;
+    private Date publishDate;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
-    private String ISBN;
+    private String isbn;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
-    private int jumlahHalaman;
+    @Check(constraints = "page_count >= 0")
+    private int pageCount;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
-    private String fotoCover;
+    private String photoUrl;
 
     @Column(nullable = false)
-    @Getter
-    @Setter
-    private int jumlahBeli;
+    private String category;
+
+    @Column(nullable = false)
+    @Check(constraints = "download_count >= 0")
+    private int downloadCount;
+
     public static BookBuilder builder() {
         return new BookBuilder();
     }
 }
-

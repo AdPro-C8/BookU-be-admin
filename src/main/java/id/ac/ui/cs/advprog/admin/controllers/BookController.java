@@ -58,7 +58,6 @@ public class BookController {
 
         return bookList;
     }
-
     @GetMapping("/{id}")
     public ResponseEntity getBooks(@PathVariable UUID id) {
         ResponseEntity responseEntity = null;
@@ -78,11 +77,11 @@ public class BookController {
                 .author(bookDto.getAuthor())
                 .publisher(bookDto.getPublisher())
                 .price(bookDto.getPrice())
-                .tanggalTerbit(bookDto.getTanggalTerbit())
-                .ISBN(bookDto.getIsbn())
-                .jumlahHalaman(bookDto.getJumlahHalaman())
-                .fotoCover(bookDto.getFotoCover())
-                .jumlahBeli(bookDto.getJumlahBeli())
+                .publishDate(bookDto.getPublishDate())
+                .isbn(bookDto.getIsbn())
+                .pageCount(bookDto.getPageCount())
+                .photoUrl(bookDto.getPhotoUrl())
+                .category(bookDto.getCategory())
                 .build();
 
         try {
@@ -103,7 +102,8 @@ public class BookController {
     @PatchMapping("/{bookId}")
     ResponseEntity<Void> updateBookById(
             @PathVariable UUID bookId,
-            @RequestBody PatchBookRequestDto bookDto) {
+            @RequestBody PatchBookRequestDto bookDto)
+    {
         Optional<Book> book = bookService.findById(bookId);
 
         if (book.isEmpty()) {
@@ -112,18 +112,22 @@ public class BookController {
 
         Book someBook = book.get();
 
+
         Optional.ofNullable(bookDto.getPublisher())
                 .ifPresent(publisher -> someBook.setPublisher(publisher));
-        Optional.ofNullable(bookDto.getTanggalTerbit())
-                .ifPresent(tanggalTerbit -> someBook.setTanggalTerbit(tanggalTerbit));
+        Optional.ofNullable(bookDto.getPublishDate())
+                .ifPresent(publishDate -> someBook.setPublishDate(publishDate));
         Optional.ofNullable(bookDto.getIsbn())
-                .ifPresent(ISBN -> someBook.setISBN(ISBN));
-        Optional.ofNullable(bookDto.getJumlahHalaman())
-                .ifPresent(jumlahHalaman -> someBook.setJumlahHalaman(jumlahHalaman));
-        Optional.ofNullable(bookDto.getFotoCover())
-                .ifPresent(photoUrl -> someBook.setFotoCover(photoUrl));
+                .ifPresent(isbn -> someBook.setIsbn(isbn));
+        Optional.ofNullable(bookDto.getPageCount())
+                .ifPresent(pageCount -> someBook.setPageCount(pageCount));
+        Optional.ofNullable(bookDto.getPhotoUrl())
+                .ifPresent(photoUrl -> someBook.setPhotoUrl(photoUrl));
+        Optional.ofNullable(bookDto.getCategory())
+                .ifPresent(category -> someBook.setCategory(category));
 
         bookService.save(someBook);
+
         return ResponseEntity.ok().build();
     }
 
@@ -136,7 +140,7 @@ public class BookController {
             return ResponseEntity.notFound().build();
         }
 
-        if (book.get().getJumlahBeli() > 0) {
+        if (book.get().getDownloadCount() > 0) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
