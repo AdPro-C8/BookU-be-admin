@@ -2304,3 +2304,29 @@ This generated password is for development use only. Your security configuration
 2024-05-26T16:02:51.600+07:00  INFO 57312 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-05-26T16:02:51.604+07:00  INFO 57312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-05-26T16:02:51.613+07:00  INFO 57312 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-05-26T16:52:32.194+07:00  INFO 7772 --- [Test worker] i.a.u.c.a.admin.AdminApplicationTests    : Starting AdminApplicationTests using Java 21.0.2 with PID 7772 (started by User in C:\Users\User\Desktop\All In One\Perkuliahan\SEMESTER 4\ADPRO\Tugas Kelompok C8\admin)
+2024-05-26T16:52:32.196+07:00  INFO 7772 --- [Test worker] i.a.u.c.a.admin.AdminApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-05-26T16:52:32.866+07:00  INFO 7772 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-26T16:52:32.930+07:00  INFO 7772 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 2 JPA repository interfaces.
+2024-05-26T16:52:33.454+07:00  INFO 7772 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-26T16:52:33.560+07:00  INFO 7772 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-26T16:52:33.599+07:00  INFO 7772 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-26T16:52:33.861+07:00  INFO 7772 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-26T16:52:33.896+07:00  INFO 7772 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-26T16:52:34.092+07:00  INFO 7772 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@41be8db9
+2024-05-26T16:52:34.094+07:00  INFO 7772 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-26T16:52:34.138+07:00  WARN 7772 --- [Test worker] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-26T16:52:34.985+07:00  INFO 7772 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-26T16:52:35.046+07:00  INFO 7772 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-26T16:52:35.081+07:00  WARN 7772 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-26T16:52:36.019+07:00  WARN 7772 --- [Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9734d076-0173-41b0-8b5e-5371418b13f6
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-05-26T16:52:36.267+07:00  INFO 7772 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@182469d0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62aefc75, org.springframework.security.web.context.SecurityContextHolderFilter@640028f2, org.springframework.security.web.header.HeaderWriterFilter@118f39f3, org.springframework.web.filter.CorsFilter@c6653e, org.springframework.security.web.authentication.logout.LogoutFilter@41962299, id.ac.ui.cs.advprog.admin.config.JwtAuthenticationFilter@3da55998, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ef3efcc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60655642, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@435e224d, org.springframework.security.web.session.SessionManagementFilter@2ac0cb64, org.springframework.security.web.access.ExceptionTranslationFilter@2a045e85, org.springframework.security.web.access.intercept.AuthorizationFilter@68024e57]
+2024-05-26T16:52:36.646+07:00  INFO 7772 --- [Test worker] i.a.u.c.a.admin.AdminApplicationTests    : Started AdminApplicationTests in 4.714 seconds (process running for 5.933)
+2024-05-26T16:52:37.193+07:00  INFO 7772 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-26T16:52:37.195+07:00  INFO 7772 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-05-26T16:52:37.198+07:00  INFO 7772 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
