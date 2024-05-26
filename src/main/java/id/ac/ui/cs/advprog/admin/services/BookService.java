@@ -31,18 +31,31 @@ public class BookService {
         this.restClient = restClient;
     }
 
-        public Book save(Book book) {
-            try {
-                return restClient.post()
-                        .uri(bookHost + "/book")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(book)
-                        .retrieve()
-                        .body(Book.class);
-            } catch (HttpStatusCodeException e) {
-                throw new RuntimeException("Error saving book: " + e.getMessage(), e);
-            }
+    public Book save(Book book) {
+        try {
+            return restClient.post()
+                    .uri(bookHost + "/book")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(book)
+                    .retrieve()
+                    .body(Book.class);
+        } catch (HttpStatusCodeException e) {
+            throw new RuntimeException("Error saving book: " + e.getMessage(), e);
         }
+    }
+
+    public Book update(Book book) {
+        try {
+            return restClient.patch()
+                    .uri(bookHost + "/book")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(book)
+                    .retrieve()
+                    .body(Book.class);
+        } catch (HttpStatusCodeException e) {
+            throw new RuntimeException("Error saving book: " + e.getMessage(), e);
+        }
+    }
 
     public Optional<Book> findById(UUID bookId) {
         try {

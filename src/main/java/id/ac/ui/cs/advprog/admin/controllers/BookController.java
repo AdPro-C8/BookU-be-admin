@@ -112,7 +112,6 @@ public class BookController {
 
         Book someBook = book.get();
 
-
         Optional.ofNullable(bookDto.getPublisher())
                 .ifPresent(publisher -> someBook.setPublisher(publisher));
         Optional.ofNullable(bookDto.getPublishDate())
