@@ -84,16 +84,16 @@ public class BookService {
     {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(bookHost + "/book");
 
-        if (author != null) {
+        if (author.isPresent()) {
             uriBuilder.queryParam("author", author);
         }
-        if (title != null) {
+        if (title.isPresent()) {
             uriBuilder.queryParam("title", title);
         }
-        if (sortBy != null) {
+        if (sortBy.isPresent()) {
             uriBuilder.queryParam("sortBy", sortBy);
         }
-        if (orderBy != null) {
+        if (orderBy.isPresent()) {
             uriBuilder.queryParam("orderBy", orderBy);
         }
 
