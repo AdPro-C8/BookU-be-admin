@@ -10,18 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static id.ac.ui.cs.advprog.admin.repository.BookRepository.BookSpecifications.authorIs;
-import static id.ac.ui.cs.advprog.admin.repository.BookRepository.BookSpecifications.titleIs;
 
 @RestController
 @RequestMapping("/book")
@@ -34,30 +28,21 @@ public class BookController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    List<Book> getAllBooks(
+    ResponseEntity<List<Book>> getAllBooks(
             @RequestParam Optional<String> author, @RequestParam Optional<String> title,
             @RequestParam Optional<String> sortBy, @RequestParam Optional<String> orderBy)
     {
-        Specification<Book> bookSpec = Specification.where(null);
-
-        if (author.isPresent()) {
-            bookSpec = bookSpec.and(authorIs(author.get()));
-        }
-        if (title.isPresent()) {
-            bookSpec = bookSpec.and(titleIs(title.get()));
-        }
-
-        List<Book> bookList;
-
-        if (sortBy.isPresent() && orderBy.isPresent()) {
-            Sort sort = Sort.by(Direction.fromString(orderBy.get()), sortBy.get());
-            bookList = bookService.findAll(bookSpec, sort);
-        } else {
-            bookList = bookService.findAll(bookSpec);
+        List<Book> books;
+        try {
+            books = bookService.findAll(author, title, sortBy, orderBy);
+        } catch (RuntimeException exception) {
+            logger.error(exception.getMessage(), exception);
+            return ResponseEntity.internalServerError().build();
         }
 
-        return bookList;
+        return ResponseEntity.ok(books);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity getBooks(@PathVariable UUID id) {
         ResponseEntity responseEntity = null;

@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Entity
 @Table(name = "book", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"title", "author"})
 })
