@@ -23,6 +23,7 @@ public class BookController {
 
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
+
     @Autowired
     private BookService bookService;
 
@@ -110,7 +111,7 @@ public class BookController {
         Optional.ofNullable(bookDto.getCategory())
                 .ifPresent(category -> someBook.setCategory(category));
 
-        bookService.save(someBook);
+        bookService.update(someBook);
 
         return ResponseEntity.ok().build();
     }
