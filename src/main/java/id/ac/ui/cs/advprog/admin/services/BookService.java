@@ -8,6 +8,7 @@ import java.util.UUID;
 import id.ac.ui.cs.advprog.admin.dto.PatchBookRequestDto;
 import id.ac.ui.cs.advprog.admin.dto.PostBookRequestDto;
 import id.ac.ui.cs.advprog.admin.enums.BookServiceException;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -34,10 +35,11 @@ public class BookService {
         this.restClient = restClient;
     }
 
-    public Book save(Book book) {
+    public Book save(Book book, String authHeader) {
         try {
             return restClient.post()
                     .uri(bookHost + book_url)
+                    .header("Authorization", authHeader)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(book)
                     .retrieve()

@@ -57,7 +57,7 @@ public class BookController {
     }
 
     @PostMapping("")
-    public ResponseEntity<PostBookResponseDto> createBook(@RequestBody PostBookRequestDto bookDto) {
+    public ResponseEntity<PostBookResponseDto> createBook(@RequestBody PostBookRequestDto bookDto, @RequestHeader ("Authorization") String authHeader) {
         Book newBook = Book.builder()
                 .title(bookDto.getTitle())
                 .author(bookDto.getAuthor())
@@ -71,7 +71,7 @@ public class BookController {
                 .build();
 
         try {
-            newBook = bookService.save(newBook);
+            newBook = bookService.save(newBook, authHeader);
         } catch (DataIntegrityViolationException exception) {
             logger.error("Data integrity violation: {}", exception.getMessage(), exception);
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
