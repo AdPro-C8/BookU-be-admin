@@ -21,7 +21,7 @@ import id.ac.ui.cs.advprog.admin.models.Book;
 public class BookService {
 
     @Value("${api.book-host}")
-    private String bookHost;
+    public String bookHost;
 
     private final RestClient restClient;
     private String book_url = "/book";
