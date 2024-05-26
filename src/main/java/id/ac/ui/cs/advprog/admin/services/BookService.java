@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import id.ac.ui.cs.advprog.admin.dto.PatchBookRequestDto;
+import id.ac.ui.cs.advprog.admin.dto.PostBookRequestDto;
 import id.ac.ui.cs.advprog.admin.enums.BookServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,24 +48,16 @@ public class BookService {
     }
 
     //This method still needs work to do since it deletes then save the updated book, so the id is different (not intented)
-    public Book update(Book book) {
+    public void update(UUID bookId, PatchBookRequestDto dto) {
         try {
-            Book existingBook = restClient.get()
-                    .uri(bookHost + book_url2 + book.getId())
+            restClient.patch()
+                    .uri(bookHost + book_url2 + bookId)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(dto)
                     .retrieve()
-                    .body(Book.class);
-
-            if (existingBook == null) {
-                throw new BookServiceException("Book not found with ID: " + book.getId());
-            }
-            book.setId(existingBook.getId());
-            restClient.delete()
-                    .uri(bookHost + book_url2 + book.getId())
-                    .retrieve();
-            return save(book);
-
+                    .toBodilessEntity();
         } catch (HttpStatusCodeException e) {
-            throw new BookServiceException("Error updating book: " + e.getMessage(), e);
+            throw new BookServiceException("Error saving book: " + e.getMessage(), e);
         }
     }
 

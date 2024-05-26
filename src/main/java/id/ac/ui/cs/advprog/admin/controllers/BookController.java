@@ -90,29 +90,7 @@ public class BookController {
             @PathVariable UUID bookId,
             @RequestBody PatchBookRequestDto bookDto)
     {
-        Optional<Book> book = bookService.findById(bookId);
-
-        if (book.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Book someBook = book.get();
-
-        Optional.ofNullable(bookDto.getPublisher())
-                .ifPresent(publisher -> someBook.setPublisher(publisher));
-        Optional.ofNullable(bookDto.getPublishDate())
-                .ifPresent(publishDate -> someBook.setPublishDate(publishDate));
-        Optional.ofNullable(bookDto.getIsbn())
-                .ifPresent(isbn -> someBook.setIsbn(isbn));
-        Optional.ofNullable(bookDto.getPageCount())
-                .ifPresent(pageCount -> someBook.setPageCount(pageCount));
-        Optional.ofNullable(bookDto.getPhotoUrl())
-                .ifPresent(photoUrl -> someBook.setPhotoUrl(photoUrl));
-        Optional.ofNullable(bookDto.getCategory())
-                .ifPresent(category -> someBook.setCategory(category));
-
-        bookService.update(someBook);
-
+        bookService.update(bookId, bookDto);
         return ResponseEntity.ok().build();
     }
 
