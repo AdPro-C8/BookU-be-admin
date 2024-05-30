@@ -1,6 +1,5 @@
 package id.ac.ui.cs.advprog.admin.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +11,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Entity
-@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

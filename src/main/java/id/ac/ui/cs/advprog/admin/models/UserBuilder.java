@@ -1,7 +1,6 @@
 package id.ac.ui.cs.advprog.admin.models;
 
 import id.ac.ui.cs.advprog.admin.enums.UserRole;
-import id.ac.ui.cs.advprog.admin.models.User;
 
 import java.lang.IllegalArgumentException;
 
